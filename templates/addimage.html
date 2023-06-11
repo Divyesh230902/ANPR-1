@@ -4,24 +4,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- add favicon -->
+  <link rel="shortcut icon" href="/static/imgs/dr-anpr-01.png" type="image/x-icon">
   <title>Home Page</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 
 <body>
-  <h1>Automatic Number Plate Recognition</h1>
-  <p>This is a demo website that uses an ANPR system to detect and recognize license plates from images.</p>
+  <!-- create a nav bar with title DR ANPR with bootstrap -->
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/static/imgs/dr-anpr-01.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+        DR ANPR
+      </a>
+    </div>
+  </nav>
+  <!-- create a form with action='/result/' and method='post' -->
+  <br>
+  <br>
+
+  <div class="container">
+    <h1>Automatic Number Plate Recognition</h1>
+    <p>Upload an image of a car and get the number plate of the car.</p>
+  </div>
+
+  <br>
+  <br>
+
   <form action="/result/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="mb-3">
-      <label for="image" class="form-label">Upload Image</label>
+
       <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  <div id="result"></div>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- get some space between two div -->
+  <br>
+  <br>
+  <!-- create a card that shows result with id='result' -->
+  <div class="card" id="result">
+    <div class="card-body">
+      <h5 class="card-title">Result</h5>
+      <p class="card-text">The result will be shown here.</p>
+    </div>
+  </div>
 
   <script src="/static/js/anpr.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
