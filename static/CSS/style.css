@@ -1,58 +1,13 @@
-/* Add shadows to the images */
-img {
-    box-shadow: 5px 5px 10px grey;
-}
+body { background-color: lightblue; }
 
-/* Change the shapes of the images */
-img.rounded {
-    border-radius: 50%;
-}
+h1 { font-family: Arial, Helvetica, sans-serif; font-size: 36px; }
 
-img.circular {
-    border-radius: 25%;
-}
+p { font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 18px; }
 
-/* Change background colors of headers */
-h1 {
-    background-color: rgb(171, 171, 255);
-}
+.container { margin: 20px; padding: 20px; }
 
-h2 {
-    background-color: green;
-}
+form { margin: 20px; padding: 20px; border: 1px solid black; }
 
-h3 {
-    background-color: yellow;
-}
+footer { margin-top: 40px; padding: 10px; }
 
-/* Before and after selectors using custom CSS */
-p::before {
-    content: "Hello ";
-}
-
-p::after {
-    content: " World!";
-}
-
-/* Changing the color scheme of widgets */
-.widget {
-    background-color: lightgrey;
-    color: black;
-}
-
-/* Disable right click and stop others from copying using CSS codes */
-body {
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Safari */
-    -khtml-user-select: none;
-    /* Konqueror HTML */
-    -moz-user-select: none;
-    /* Old versions of Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
-                                    supported by Chrome, Edge, Opera and Firefox */
-}
+.container { background-color: white; box-shadow: black; column-span: all;}

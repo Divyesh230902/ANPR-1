@@ -23,9 +23,11 @@ def get_plate(img):
     # Blur the image
     blur = cv.GaussianBlur(gray, (5, 5), 0)
     # Apply Canny edge detection
-    canny = cv.Canny(blur, 150, 200)
+    # canny = cv.Canny(blur, 150, 200)
+
+    thresh = cv.adaptiveThreshold(gray, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 11, 2)
     # Find contours
-    contours, hierarchy = cv.findContours(canny, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
+    contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
     # Find the contour with the maximum area
     cnt = max(contours, key=cv.contourArea)
     # Find the perimeter of the contour
