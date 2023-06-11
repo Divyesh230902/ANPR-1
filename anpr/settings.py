@@ -68,6 +68,9 @@ TEMPLATES = [
     },
 ]
 
+CSRF_COOKIE_HTTPONLY = True
+CSRF_USE_SESSIONS = True
+
 STATIC = BASE_DIR / "static"
 
 STATICFILES_DIRS = [
