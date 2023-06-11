@@ -68,6 +68,12 @@ TEMPLATES = [
     },
 ]
 
+STATIC = BASE_DIR / "static"
+
+STATICFILES_DIRS = [
+    STATIC, # BASE_DIR / "static"
+]
+
 WSGI_APPLICATION = "anpr.wsgi.application"
 
 
@@ -125,3 +131,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_ROOT = BASE_DIR/"media"
 MEDIA_URL = "/media/"
+
+GDAL_LIBRARY_PATH='/opt/homebrew/Cellar/gdal/3.2.2_3/lib/libgdal.dylib'

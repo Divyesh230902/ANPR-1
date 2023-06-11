@@ -23,8 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("uploadimage/",get_form),
-    path("result/",get_data),
-    path("/upload",get_form)
+    path("result/",get_data)
 ]
 
 urlpatterns+=static(settings.MEDIA_URL,document_root= settings.MEDIA_ROOT)

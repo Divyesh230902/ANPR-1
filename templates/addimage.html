@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h1>Add Image</h1>
-    <form action = "/result/" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-      <input type="file" name="image">
-      <input type="submit" value="Add Image">
-    </form> 
+<h1>Automatic Number Plate Recognition</h1>
+  <p>This is a demo website that uses an ANPR system to detect and recognize license plates from images.</p>
+  <form action="/result/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="image">Select an image to upload:</label>
+    <input type="file" id="image" name="image" accept="media/imgs/*">
+    <input type="submit" value="Upload Image">
+  </form>
+  <div id="result"></div>
+  <script src="/static/js/anpr.js"></script>
 </body>
 </html>

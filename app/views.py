@@ -14,7 +14,7 @@ from .models import image_storage
 def detect_plate(path): #making a function
     # img=cv2.imread(path) #reading the path
     img = cv2.imdecode(np.fromstring(path.read(),np.uint8),cv2.IMREAD_UNCHANGED)
-    resize = cv2.resize(img, (250, 250)) #resizing the image
+    img = cv2.resize(img, (250, 250)) #resizing the image
     image_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #convert to grayscale
     image_blur = cv2.GaussianBlur(image_gray, (5, 5), 0) #blur the grayscale image
     image_canny = cv2.Canny(image_blur, 150, 200) #edge detection
