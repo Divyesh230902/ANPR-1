@@ -17,17 +17,15 @@ from .serializer import image_serializer
 
 def get_plate(img):
     # Convert to grayscale
-    img = cv.imdecode(np.fromstring(img.read(), np.uint8), cv.IMREAD_UNCHANGED)
+    img = cv.imread(img)
     img = cv.resize(img, (300, 200))
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     # Blur the image
     blur = cv.GaussianBlur(gray, (5, 5), 0)
     # Apply Canny edge detection
-    # canny = cv.Canny(blur, 150, 200)
-
-    thresh = cv.adaptiveThreshold(gray, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 11, 2)
+    canny = cv.Canny(blur, 150, 200)
     # Find contours
-    contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
+    contours, hierarchy = cv.findContours(canny, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
     # Find the contour with the maximum area
     cnt = max(contours, key=cv.contourArea)
     # Find the perimeter of the contour
@@ -52,11 +50,14 @@ def get_data(request):
     if request.method == "POST":
         print("hello post")
         image = request.FILES["image"]
-        ocr,final_img = get_plate(image)
+        db_object = image_storage.objects.create(img_input=image)
+        db_object.save()
+        print(db_object.img_input.path)
+        ocr,final_img = get_plate(db_object.img_input.path)
         print(ocr)
         f_img = cv.imencode('.jpg', final_img)
         final_img = ContentFile(f_img[1].tobytes())
-        db_object = image_storage.objects.create(ocr_output=ocr)
+        
         db_object.img.save(image.name,final_img)
         db_object.save()
         ob = image_serializer(db_object)
